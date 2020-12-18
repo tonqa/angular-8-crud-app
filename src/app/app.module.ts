@@ -31,6 +31,10 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+    // HttpClientXsrfModule.withOptions({
+    //   cookieName: 'XSRF-TOKEN',
+    //   headerName: 'X-XSRF-TOKEN'
+    // })
   ],
   providers: [
     CookieService, {

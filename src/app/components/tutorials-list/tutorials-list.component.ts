@@ -29,7 +29,6 @@ export class TutorialsListComponent implements OnInit {
           this.tutorials.forEach(element => {
             element.clicks = 0;
           });
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -51,7 +50,6 @@ export class TutorialsListComponent implements OnInit {
     this.tutorialService.deleteAll()
       .subscribe(
         response => {
-          console.log(response);
           this.refreshList();
         },
         error => {
@@ -64,7 +62,6 @@ export class TutorialsListComponent implements OnInit {
       .subscribe(
         data => {
           this.tutorials = data;
-          console.log(data);
         },
         error => {
           console.log(error);
