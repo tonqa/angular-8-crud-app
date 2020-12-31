@@ -11,7 +11,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   public username: string;
   public password: string;
-  private userInfo: any;
+  public userInfo: any;
   public loggedInAs: string;
 
   constructor(

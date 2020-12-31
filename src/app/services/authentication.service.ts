@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
-const baseUrl = 'http://localhost:8080/user';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  private baseUrl: string;
   public basicHeaderValue: string;
   public userInfo: any;
   public redirectUrl: any;
@@ -18,6 +18,7 @@ export class AuthenticationService {
   constructor(private cookieService: CookieService, private http: HttpClient) {
     // initialize token from cookie
     this.basicHeaderValue = cookieService.get('basicHeaderValue');
+    this.baseUrl = environment.apiUrl + '/user';
 
     if (this.basicHeaderValue) {
       this.checkLogin();
@@ -29,7 +30,7 @@ export class AuthenticationService {
     this.cookieService.delete('basicHeaderValue');
     this.userInfo = null;
 
-    return this.http.get<any>(baseUrl, {
+    return this.http.get<any>(this.baseUrl, {
       headers: new HttpHeaders({
         Authorization: 'Basic ' + btoa(username + ':' + password)
       })
@@ -56,7 +57,7 @@ export class AuthenticationService {
   }
 
   private checkLogin() {
-    return this.http.get<any>(baseUrl)
+    return this.http.get<any>(this.baseUrl)
     .pipe(
       tap(
         event => {
