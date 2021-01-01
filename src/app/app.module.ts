@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -30,11 +30,11 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-    // HttpClientXsrfModule.withOptions({
-    //   cookieName: 'XSRF-TOKEN',
-    //   headerName: 'X-XSRF-TOKEN'
-    // })
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN'
+    })
   ],
   providers: [
     CookieService, {
